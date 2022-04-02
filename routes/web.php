@@ -21,6 +21,7 @@ Route::get('/', function () {
 // Rutas de Auth Controller (Login)
 Route::controller(AuthController::class)->group(function () {
     Route::post('auth', 'authenticate');
+    Route::post('ajax_auth', 'ajax_authenticate');
     Route::middleware('auth')->get('logout', 'logout');
 });
 

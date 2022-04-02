@@ -1,34 +1,42 @@
 @include('components.head')
 @include('components.header')
+<main class="md:w-1/4 w-3/4 mx-auto">
 <section>
-  <div class="container">
-    <form class="p-5" method="POST" action="{{ url('register') }}">
+  <div class="my-12">
+    <form method="POST" action="{{ url('register') }}">
       @csrf
-      <div class="row">
-        <div class="form-floating mb-3 col-lg-7 mx-auto">
-          <input type="email" class="form-control" id="email" name="email" required>
-          <label class="ms-3" for="email">Correo electrónico</label>
+      <div class="mt-4">
+        <div class="flex flex-col">
+          <label class="text-slate-600 font-bold" for="email">Correo electrónico</label>
+          <input class="p-3 rounded border border-slate-600/30 focus:shadow-inner
+              focus:shadow-cyan-600/50 caret-cyan-600/50 outline-none" type="email" id="email" name="email" required>
         </div>
       </div>
-      <div class="row">
-        <div class="form-floating mb-3 col-lg-7 mx-auto">
-          <input type="text" class="form-control" id="nombre" name="nombre" required>
-          <label class="ms-3" for="nombre">Nombre</label>
+      <div class="mt-4">
+        <div class="flex flex-col">
+          <label class="text-slate-600 font-bold" for="nombre">Nombre</label>
+          <input class="p-3 rounded border border-slate-600/30 focus:shadow-inner
+              focus:shadow-cyan-600/50 caret-cyan-600/50 outline-none" type="text" id="nombre" name="nombre" required>
         </div>
       </div>
-      <div class="row">
-        <div class="form-floating mb-3 col-lg-7 mx-auto">
-          <input type="password" class="form-control" id="password" name="password" required>
-          <label class="ms-3" for="password">Contraseña</label>
+      <div class="mt-4">
+        <div class="flex flex-col">
+          <label class="text-slate-600 font-bold" for="password">Contraseña</label>
+          <input class="p-3 rounded border border-slate-600/30 focus:shadow-inner
+              focus:shadow-cyan-600/50 caret-cyan-600/50 outline-none" type="password" id="password" name="password" required>
         </div>
       </div>
-      <div class="row">
-        <button type="submit" class="btn btn-dark col-11 col-lg-6 mx-auto">Registrar</button>
+      <div class="mt-8 flex justify-center">
+        <button class="w-full bg-cyan-600 hover:bg-cyan-500 rounded p-2
+        text-slate-100 outline-none 
+        focus:shadow-lg focus:shadow-cyan-600/50 disabled:bg-slate-200
+        disabled:text-slate-400 disabled:shadow-none
+        disabled:cursor-not-allowed" type="submit">Completar registro</button>
       </div>
       @if ($errors->any())
-        <div class="row mt-3">
-          <div class="col-11 col-lg-6 mx-auto text-center border rounded">
-            <p class="text-danger p-3 fw-bold mb-0">{{ $errors->all(':message')[0] }}</p>
+        <div>
+          <div>
+            <p>{{ $errors->all(':message')[0] }}</p>
           </div>
         </div>
       @endif

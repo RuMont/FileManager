@@ -24,8 +24,14 @@ submit.addEventListener('click', async (e) => {
         message.innerText = 'Seleccione las fechas antes de generar los ficheros';
         return;
     }
+    
+    objectDate1 = new Date(date1.value)
+    objectDate2 = new Date(date2.value)
 
-    if (object) {
+    const fromDate = `${objectDate1.getDate() < 10 ? "0" + objectDate1.getDate() : objectDate1.getDate()}${objectDate1.getMonth() < 10 ? "0" + (objectDate1.getMonth()+1) : (objectDate1.getMonth()+1) }${objectDate1.getFullYear()}`;
+    const toDate = `${objectDate2.getDate() < 10 ? "0" + objectDate2.getDate() : objectDate2.getDate()}${objectDate2.getMonth() < 10 ? "0" + (objectDate2.getMonth()+1) : (objectDate2.getMonth()+1) }${objectDate2.getFullYear()}`;
+
+    if (object.ventas || object.clientes || object.proveedores) {
         // Por cada propiedad en true de object se genera un archivo
         for (const [key, value] of Object.entries(object)) {
             if (value) {
@@ -48,7 +54,7 @@ submit.addEventListener('click', async (e) => {
                 if (resp) {
                     message.innerText = "Los ficheros se han generado con éxito";
                     const blob = await resp.blob();
-                    await download(blob, key + '.txt', "text/plain");
+                    await download(blob, key + fromDate + '-' + toDate + '.txt', "text/plain");
                 } else {
                     message.innerText = "Algo ha fallado en el servidor...";
                 }

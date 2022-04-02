@@ -30,8 +30,19 @@ class AuthController extends Controller
 
         // Si no consigue logear al usuario retorna un error
         return back()->withErrors([
-            'email' => 'Correo o contraseña no válidos',
+            'email' => 'Las credenciales proporcionadas no son válidas',
         ]);
+    }
+
+    public function ajax_authenticate(Request $request)
+    {
+        // Validadores del lado del servidor
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        return json_encode(Auth::attempt($credentials));
     }
 
     /**
@@ -48,6 +59,6 @@ class AuthController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('login');
+        return redirect('dashboard')->with('status', 'Sesión cerrada');
     }
 }
