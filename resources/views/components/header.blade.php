@@ -19,7 +19,7 @@
     @auth
       <div>
         <span>{{ Auth::user()->email }}</span>
-        <a class="border border-rose-500 p-1 rounded text-rose-500 m-2" href="{{ url('logout') }}">Cerrar sesión</a>
+        <a class="hover:bg-rose-500 hover:text-slate-100 border border-rose-500 p-1 rounded text-rose-500 m-2" href="{{ url('logout') }}">Cerrar sesión</a>
       </div>
     @endauth
   </div>
