@@ -15,9 +15,11 @@ form.addEventListener('submit', async (e) => {
         },
         body: JSON.stringify(data)
     })
-    const isLogged = await resp.text(); // Booleano que nos indica si existe
+    let isLogged = await resp.text(); 
 
-    if (isLogged === false) {
+    isLogged = (isLogged === 'true'); // Booleano que nos indica si existe
+
+    if (!isLogged) {
         message.innerText = "Las credenciales no son válidas";
     } else {
         form.submit();
